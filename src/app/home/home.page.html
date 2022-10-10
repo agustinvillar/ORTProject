@@ -1,20 +1,45 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <form [formGroup]="playerForm" (ngSubmit)="formSubmit()">
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-input formControlName="name" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellido:</ion-label>
+      <ion-input formControlName="lastName" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Correo:</ion-label>
+      <ion-input formControlName="email" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input formControlName="mobile" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Carrera universitaria</ion-label>
+      <ion-input formControlName="carreer" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Semestre en curso</ion-label>
+      <ion-input formControlName="semester" type="number" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Estas trabajando?</ion-label>
+      <ion-input formControlName="isWorking" type="boolean" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Continuar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
