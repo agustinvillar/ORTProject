@@ -1,21 +1,18 @@
 
 import { Injectable } from '@angular/core';
 import { NewPlayer } from '../shared/new-player';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-  AngularFireObject,
-} from '@angular/fire/compat/database';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root',
 })
 export class NewPlayerService {
-  playerListRef: AngularFireList<any>;
-  constructor() {}
+
+  constructor(private firestore: Firestore) { }
   // Create
   createNewPlayer(player: NewPlayer) {
+    const playerRef = collection(this.firestore, 'players')
     console.log(player);
-    return this.playerListRef.push({
+    const newPlayer = {
       name: player.name,
       email: player.email,
       mobile: player.mobile,
@@ -23,8 +20,8 @@ export class NewPlayerService {
       carreer: player.carreer,
       semester: player.semester,
       isWorking: player.isWorking
-    });
+    }
+    // Add to Firestore
+    return addDoc(playerRef, newPlayer)
   }
-
-  
 }
