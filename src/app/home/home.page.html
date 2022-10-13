@@ -21,20 +21,20 @@
       <ion-input formControlName="email" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Telefono</ion-label>
+      <ion-label position="floating">Teléfono:</ion-label>
       <ion-input formControlName="mobile" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Carrera universitaria</ion-label>
+      <ion-label position="floating">Carrera universitaria:</ion-label>
       <ion-input formControlName="carreer" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Semestre en curso</ion-label>
+      <ion-label position="floating">Semestre en curso:</ion-label>
       <ion-input formControlName="semester" type="number" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Estas trabajando?</ion-label>
-      <ion-input formControlName="isWorking" type="boolean" required></ion-input>
+      <ion-label >Estás trabajando?</ion-label>
+      <ion-toggle item-start formControlName="isWorking"  color="success" [checked]="true" type="boolean"></ion-toggle>
     </ion-item>
     <ion-row>
       <ion-col>
