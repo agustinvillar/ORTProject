@@ -1,0 +1,48 @@
+.ionic-list{
+    margin-top: 0;
+    border: 1px solid #f2f2f2;
+}
+
+h3{
+    color: #58595b;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+
+ion-radio {
+    width: 30px;
+    height: 30px;
+  }
+  
+  ion-radio::part(container) {
+    border-radius: 8px;
+    border: 2px solid #ddd;
+  }
+  
+  ion-radio::part(mark) {
+    background: none;
+    transition: none;
+    transform: none;
+    border-radius: 0;
+  }
+  
+  ion-radio.radio-checked::part(container) {
+    background: #005151;
+    border-color: transparent;
+  }
+  
+  ion-radio.radio-checked::part(mark) {
+    width: 6px;
+    height: 10px;
+  
+    border-width: 0px 2px 2px 0px;
+    border-style: solid;
+    border-color: #FFF;
+  
+    transform: rotate(45deg);
+  }
+
+.ion-page{
+    display: block;
+  }
