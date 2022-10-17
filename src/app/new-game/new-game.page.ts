@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../shared/game.service';
+import { Question } from '../shared/question';
 
 @Component({
   selector: 'app-new-game',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewGamePage implements OnInit {
 
-  constructor() { }
+  data: Question[]
+  counter: Number = 0
+
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
+    this.gameService.getQuestions().subscribe((questions) => {
+      this.data = questions
+    }).unsubscribe()
   }
-
 }
