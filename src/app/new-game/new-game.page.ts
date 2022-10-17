@@ -19,25 +19,23 @@ export class NewGamePage implements OnInit {
 
 
   ngOnInit() {
-
     this.questionService.getQuestions().then((question) => {
       this.questionList = question
-      const index = this.selectRandomIndex()
-      this.setQuestionAndAnswers(index)
+
+      this.setQuestionAndAnswers()
       this.gameReady = true
-    }
-    )
+    })
   }
 
   nextStep() {
     this.counter++
-    console.log(this.counter)
+    this.setQuestionAndAnswers()
   }
 
-  setQuestionAndAnswers(index: number) {
+  setQuestionAndAnswers() {
+    const index = this.selectRandomIndex()
     this.question = this.questionList[index].question
     this.answers = this.questionList[index].answers
-
     this.removeQuestionFromList(index)
   }
 
