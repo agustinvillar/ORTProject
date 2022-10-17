@@ -58,7 +58,7 @@ ion-radio {
   }
 
   .app-splash-screen {
-    background: #005151 url("../../assets/ending-animation/confetti.svg");
+    background: transparent url("../../assets/ending-animation/confetti.svg");
     position: fixed;
     top: 0;
     left: 0;
@@ -70,25 +70,36 @@ ion-radio {
     width: 100%;
     height: 100%;
     z-index: 100;
-    transition: left 0.5s;
+    /*transition: left 0.5s;*/
+
+    left: windowWidth; 
+    opacity: opacityChange;
+    transition: splashTransition;
+
+    .app-splash-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
   
   .app-label {
     margin-top: 32px;
     color: #fff;
     font-size: 2.5em;
-    font-family: "Pacifico", cursive;
+    /* font-family: "Pacifico", cursive; */
+
+    h2, h3 {
+      color: #fff;
+      text-transform: uppercase;
+    }
   }
   
-  .app-splash-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  
   
   .app-logo {
-    background: red url("../../assets/ending-animation/ukg_logo.svg");
+    background: transparent url("https://www.ukg.com/themes/custom/ukg/dist/images/logo-green.png");
     background-repeat: no-repeat;
     max-width: 100%;
     background-position: center;
@@ -96,7 +107,6 @@ ion-radio {
     width: 100px;
     height: 100px;
     padding: 10px;
-    border: 1px solid red;
   }
   
   .app-loader {
