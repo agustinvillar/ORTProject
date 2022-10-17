@@ -12,11 +12,6 @@ Open node.js command prompt:
 
 npm install -g @ionic/cli cordova-res
 
-get inside the project:
-
-`` `cd ionic-firebase-crud` ``
-
-and run
 
 `` `npm install firebase @angular/fire --save` ``
 
