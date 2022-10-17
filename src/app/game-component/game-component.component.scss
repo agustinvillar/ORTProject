@@ -1,3 +1,13 @@
+:root {
+  --branding-primary-color: #378275;
+  --branding-alert-bg-color: #EB5F5F;
+  --branding-header-bg-color: #005151;
+  --branding-header-text-color: #ffffff;
+  --branding-header-icon-color: #ffffff;
+  --branding-footer-bg-color: #005151;
+  --branding-footer-text-color: #ffffff;
+}
+
 .ionic-list{
     margin-top: 0;
     border: 1px solid #f2f2f2;
@@ -28,7 +38,7 @@ ion-radio {
   }
   
   ion-radio.radio-checked::part(container) {
-    background: #005151;
+    background: var(branding-footer-bg-color);
     border-color: transparent;
   }
   
@@ -48,7 +58,7 @@ ion-radio {
   }
 
   .app-splash-screen {
-    background: aquamarine;
+    background: #005151 url("../../assets/ending-animation/confetti.svg");
     position: fixed;
     top: 0;
     left: 0;
@@ -78,17 +88,19 @@ ion-radio {
   }
   
   .app-logo {
-    background: url("../../assets/ending-animation/favicon.png");
+    background: red url("../../assets/ending-animation/ukg_logo.svg");
     background-repeat: no-repeat;
     max-width: 100%;
     background-position: center;
     background-size: contain;
     width: 100px;
     height: 100px;
+    padding: 10px;
+    border: 1px solid red;
   }
   
   .app-loader {
-    background: url("../../assets/ending-animation/favicon.png");
+    background: url("../../assets/ending-animation/confetti.svg");
     background-repeat: no-repeat;
     max-width: 100%;
     background-position: center;
@@ -97,3 +109,5 @@ ion-radio {
     height: 80px;
     margin-top: 80px;
   }
+
+  
