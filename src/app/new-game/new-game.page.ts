@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Question } from '../shared/question';
 import { QuiestionsService } from '../shared/question-service';
 @Component({
   selector: 'app-new-game',
@@ -9,16 +8,13 @@ import { QuiestionsService } from '../shared/question-service';
 export class NewGamePage implements OnInit {
 
   constructor(private questionService: QuiestionsService) { }
-  listaQuestion = []
-  probando: Promise<Question[]>
+  questionList = []
   ngOnInit() {
 
     this.questionService.getQuestions().then((question) => {
-
-      this.listaQuestion = question
-      console.log(this.listaQuestion)
+      this.questionList = question
+      console.log(this.questionList)
     }
     )
-
   }
 }

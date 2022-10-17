@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Question } from './question';
-import { Observable } from 'rxjs';
-import { Firestore, collection, getDocs, collectionData  } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
 @Injectable({
     providedIn:'root',
@@ -13,13 +12,12 @@ import { Firestore, collection, getDocs, collectionData  } from '@angular/fire/f
     
     async getQuestions(): Promise<Question[]>{
 
-        const probando =[]
+        const questionList =[]
           const querySnapshot = await getDocs(collection(this.firestore, "questions"));
         querySnapshot.forEach((doc) => {
-          //  console.log(doc.id, " => ", doc.data());
-            probando.push(doc.data())
+            questionList.push(doc.data())
          });
    
-    return probando
+    return questionList
     }
 }
