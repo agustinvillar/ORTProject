@@ -8,21 +8,11 @@
   </ion-radio-group>
 </ion-list>
 <ion-button (click)="show()">Enviar respuestas</ion-button>
-<div
-  class="app-splash-screen"
-  [ngStyle]="{ 
-    left: windowWidth, 
-    opacity: opacityChange,
-    transition: splashTransition
-  }"
-  *ngIf="showEndingAnimation"
->
-
+<div class="app-splash-screen" *ngIf="showEndingAnimation">
   <div class="app-splash-inner">
     <div class="app-logo"></div>
     <div class="app-label">
-      <h3>Felicidades</h3>
+      <h2>¡¡¡Felicidades!!!</h2>
     </div>
-    <div class="app-loader"></div>
   </div>
 </div>
