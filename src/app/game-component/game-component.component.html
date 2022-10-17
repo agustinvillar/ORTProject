@@ -1,0 +1,26 @@
+<ion-list class="ionic-list">
+  <ion-radio-group value="custom-checked">
+    <h3>{{questions.questiion}}</h3>
+    <ion-item class="item" *ngFor="let option of questions.answers">
+      <ion-label>{{option.answer}}</ion-label>
+      <ion-radio value="{{option.answer}}" class="random" slot="start"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+</ion-list>
+<ion-button (click)="show()">Default</ion-button>
+<div
+  class="app-splash-screen"
+  [ngStyle]="{ 
+    left: windowWidth, 
+    opacity: opacityChange,
+    transition: splashTransition
+  }"
+  *ngIf="showEndingAnimation"
+>
+Se muestra ending animation
+  <div class="app-splash-inner">
+    <div class="app-logo"></div>
+    <div class="app-label"></div>
+    <div class="app-loader"></div>
+  </div>
+</div>
