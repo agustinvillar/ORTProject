@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService } from '../shared/game.service';
-import { Question } from '../shared/question';
-
+import { QuiestionsService } from '../shared/question-service';
 @Component({
   selector: 'app-new-game',
   templateUrl: './new-game.page.html',
@@ -9,14 +7,14 @@ import { Question } from '../shared/question';
 })
 export class NewGamePage implements OnInit {
 
-  data: Question[]
-  counter: Number = 0
-
-  constructor(private gameService: GameService) { }
-
+  constructor(private questionService: QuiestionsService) { }
+  questionList = []
   ngOnInit() {
-    this.gameService.getQuestions().subscribe((questions) => {
-      this.data = questions
-    }).unsubscribe()
+
+    this.questionService.getQuestions().then((question) => {
+      this.questionList = question
+      console.log(this.questionList)
+    }
+    )
   }
 }
