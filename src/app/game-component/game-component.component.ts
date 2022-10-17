@@ -9,6 +9,8 @@ export class GameComponentComponent implements OnInit {
  
   questions: any
 
+  showEndingAnimation : boolean = false;
+
 
 
   constructor() { }
@@ -19,5 +21,9 @@ export class GameComponentComponent implements OnInit {
 
   changeContainerColour(){
 
+  }
+
+  show(){
+    this.showEndingAnimation = true;
   }
 }

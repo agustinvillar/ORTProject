@@ -7,3 +7,20 @@
     </ion-item>
   </ion-radio-group>
 </ion-list>
+<ion-button (click)="show()">Default</ion-button>
+<div
+  class="app-splash-screen"
+  [ngStyle]="{ 
+    left: windowWidth, 
+    opacity: opacityChange,
+    transition: splashTransition
+  }"
+  *ngIf="showEndingAnimation"
+>
+Se muestra ending animation
+  <div class="app-splash-inner">
+    <div class="app-logo"></div>
+    <div class="app-label"></div>
+    <div class="app-loader"></div>
+  </div>
+</div>
