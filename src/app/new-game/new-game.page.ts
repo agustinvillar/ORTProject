@@ -35,7 +35,7 @@ export class NewGamePage implements OnInit {
       this.questionList = question
       console.log(this.questionList)
 
-      this.setQuestionAndAnswers()
+      this.setQuestionAndAnswersWithoutTimeout()
 
       this.questionService.changeEmitted$.subscribe(data => {
         this.correctAnswer = data
@@ -75,6 +75,19 @@ export class NewGamePage implements OnInit {
 
   }
 
+  setQuestionAndAnswersWithoutTimeout() {
+    let index = this.selectRandomIndex()
+    while (this.randomNumbers.includes(index)) {
+      index = this.selectRandomIndex()
+    }
+    this.question = this.questionList[index].question
+    this.answers = this.questionList[index].answers
+    this.child.resetColors();
+    this.randomNumbers.push(index)
+    console.log(index)
+    console.log(this.randomNumbers)
+  }
+
   nextStep() {
     this.questionService.emitToggleButton(true)
     this.child.changeColors();
@@ -84,7 +97,7 @@ export class NewGamePage implements OnInit {
 
       if (this.correctAnswer) {
         console.log('está correcto correcto, esperar 4 segundos')
-        
+
         this.setQuestionAndAnswers()
 
       } else {
@@ -92,11 +105,11 @@ export class NewGamePage implements OnInit {
         this.setQuestionAndAnswers()
       }
 
-      
+
 
       if (this.counter === this.maxQuestion) {
         this.stageName = "Finalizar"
-        
+
       }
 
       this.counter++
@@ -122,7 +135,7 @@ export class NewGamePage implements OnInit {
       console.log('llegue, esperar 5');
       setTimeout(() => {
         this.router.navigate(['/game-questions']);
-        
+
       }, this.timeout);
     }
 
