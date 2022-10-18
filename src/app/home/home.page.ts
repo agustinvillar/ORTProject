@@ -32,9 +32,7 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
-        console.log(res)
-        this.playerForm.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/new-game']);
       })
         .catch(error => console.log(error));
     }
