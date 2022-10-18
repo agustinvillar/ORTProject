@@ -12,11 +12,12 @@ export class GameComponentComponent implements OnInit {
   correctAnswers : number = 0;
   buttonTxt : string = 'Enviar respuestas';
   resultTxt : string = '¡Felicidades!';
-  correctAnswersTxt : string = 'Respuestas correctas : '+this.correctAnswers;
+  correctAnswersTxt : string = '';
 
   constructor(private questionService: QuestionsService) { }
 
   ngOnInit() {
       this.correctAnswers = this.questionService.counter;
+      this.correctAnswersTxt = 'Respuestas correctas : '+this.correctAnswers;
   }
 }
