@@ -34,6 +34,9 @@ export class GameComponent implements OnInit {
         if (this.answers[i].isCorrect) {
           this.buttonColor[i] = this.green;
         }
+        else{
+          this.buttonColor[i] = this.red;
+        }
       }
     }
   }
