@@ -46,7 +46,7 @@ export class NewGamePage implements OnInit {
   }
 
   selectRandomIndex() {
-    const index = Math.floor(Math.random() * this.questionList.length - 1);
+    const index = Math.floor(Math.random() * this.questionList.length);
     return index
   }
 
@@ -55,16 +55,20 @@ export class NewGamePage implements OnInit {
     while (this.randomNumbers.includes(index)) {
       index = this.selectRandomIndex()
     }
-    console.log(this.randomNumbers)
     this.disableButton = false
     this.question = this.questionList[index].question
     this.answers = this.questionList[index].answers
     this.randomNumbers.push(index)
+    console.log(index)
+    console.log(this.randomNumbers)
   }
 
   nextStep() {
-    
-    this.maxQuestion++
+
+    this.setQuestionAndAnswers()
+
+    this.counter++
+    console.log(this.counter, this.maxQuestion)
     if (this.correctAnswer) {
       this.disableButton = true
       this.questionService.addCounter();
@@ -80,29 +84,14 @@ export class NewGamePage implements OnInit {
       }, 3000);
 
       if (this.counter > this.maxQuestion - 1) {
+        console.log('llegue')
         this.router.navigate(['/new-game']);
 
       }
       if (this.counter >= this.maxQuestion - 1) {
+        console.log('llegue')
         this.stageName = "Finalizar";
       }
-
-      // else {
-      //   if (this.correctAnswer) {
-      //     this.questionService.emitChange(false)
-      //     setTimeout(() => {
-      //       this.counter++;
-      //       this.setQuestionAndAnswers()
-      //     }, 3000);
-      //   }
-      //   else {
-      //     setTimeout(() => {
-      //       this.counter++;
-      //       this.setQuestionAndAnswers()
-      //     }, 3000);
-      //   }
-      // }
-
     }
   }
 }
