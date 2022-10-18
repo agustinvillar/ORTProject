@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>new-game</ion-title>
+    <ion-title>Nuevo juego</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,5 +9,5 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button (click)="nextStep()" [disabled]="!gameReady" expand="block">Siguiente</ion-button>
+  <ion-button (click)="nextStep()" [disabled]="!gameReady" expand="block">{{stageName}}</ion-button>
 </ion-footer>

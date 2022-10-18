@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Answer } from '../shared/asnwer';
 import { Question } from '../shared/question';
 import { QuiestionsService } from '../shared/question-service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-new-game',
   templateUrl: './new-game.page.html',
@@ -9,13 +11,18 @@ import { QuiestionsService } from '../shared/question-service';
 })
 export class NewGamePage implements OnInit {
 
-  constructor(private questionService: QuiestionsService) { }
+  constructor(private questionService: QuiestionsService, private router: Router) { 
+    
+  }
   questionList: Question[]
   question: string
   answers: Answer[]
   counter: number = 0
+  maxQuestion: number = 3;
   gameReady: boolean = false
   correctAnswer: boolean
+  stageName: string ="Siguiente";
+
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
@@ -30,13 +37,33 @@ export class NewGamePage implements OnInit {
   }
 
   nextStep() {
-    if (this.correctAnswer) {
-      this.questionService.emitChange(false)
-      setTimeout(() => {
-        this.counter++
-        this.setQuestionAndAnswers()
-      }, 3000);
+    if (this.counter > this.maxQuestion -1)
+    { 
+      this.router.navigate(['/new-game']);
     }
+    if (this.counter >= this.maxQuestion -1)
+    { 
+      this.stageName = "Finalizar";
+    }
+
+    else
+    { 
+      if (this.correctAnswer) {
+        this.questionService.emitChange(false)
+        setTimeout(() => {
+          this.counter++;
+          this.setQuestionAndAnswers()
+        }, 3000);
+      }
+      else
+      { 
+        setTimeout(() => {
+          this.counter++;
+          this.setQuestionAndAnswers()
+        }, 3000);
+      }
+    }
+    
   }
 
   setQuestionAndAnswers() {
