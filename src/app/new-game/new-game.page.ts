@@ -15,8 +15,7 @@ export class NewGamePage implements OnInit {
   answers: Answer[]
   counter: number = 0
   gameReady: boolean = false
-
-
+  correctAnswer: boolean
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
@@ -24,12 +23,20 @@ export class NewGamePage implements OnInit {
 
       this.setQuestionAndAnswers()
       this.gameReady = true
+      this.questionService.changeEmitted$.subscribe(data => {
+        this.correctAnswer = data
+      })
     })
   }
 
   nextStep() {
-    this.counter++
-    this.setQuestionAndAnswers()
+    if (this.correctAnswer) {
+      this.questionService.emitChange(false)
+      setTimeout(() => {
+        this.counter++
+        this.setQuestionAndAnswers()
+      }, 3000);
+    }
   }
 
   setQuestionAndAnswers() {

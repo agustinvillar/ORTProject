@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { QuiestionsService } from 'src/app/shared/question-service';
 
 @Component({
   selector: 'app-game',
@@ -9,28 +10,19 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule, CommonModule]
 })
-export class GameComponent implements OnInit, OnChanges {
+export class GameComponent implements OnInit {
 
   @Input() question = "nada"
   @Input() answers = []
 
-  @Output() response = new EventEmitter<boolean>()
-
-  constructor() { }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    console.log(this.answers)
-  }
+  constructor(private questionService: QuiestionsService) { }
 
   ngOnInit() {
 
   }
 
-  mostrar(isCorrect : boolean){
-    console.log(isCorrect)
-    this.response.emit(isCorrect)
+  mostrar(isCorrect: boolean) {
+    this.questionService.emitChange(isCorrect)
   }
-
-
 
 }

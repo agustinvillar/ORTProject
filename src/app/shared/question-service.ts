@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Question } from './question';
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn:'root',
@@ -8,7 +9,14 @@ import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
   export class QuiestionsService{
 
-    constructor(private firestore: Firestore) { }     
+    constructor(private firestore: Firestore) { }  
+    
+    private emitChangeSource = new Subject<any>()
+    changeEmitted$ = this.emitChangeSource.asObservable()
+
+    emitChange(change: any){
+      this.emitChangeSource.next(change)
+    }
     
     async getQuestions(): Promise<Question[]>{
 
