@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class NewGamePage implements OnInit {
 
-  constructor(private questionService: QuiestionsService, private router: Router) { 
-    
+  constructor(private questionService: QuiestionsService, private router: Router) {
+
   }
   questionList: Question[]
   question: string
@@ -24,7 +24,7 @@ export class NewGamePage implements OnInit {
   randomNumbers = []
   maxQuestion: number = 3;
   gameReady: boolean = false
-  stageName: string ="Siguiente";
+  stageName: string = "Siguiente";
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
@@ -32,11 +32,11 @@ export class NewGamePage implements OnInit {
       console.log(this.questionList)
 
       this.setQuestionAndAnswers()
-      
+
       this.questionService.changeEmitted$.subscribe(data => {
         this.correctAnswer = data
         this.disableButton = false
-        
+
       })
     })
   }
@@ -52,61 +52,57 @@ export class NewGamePage implements OnInit {
 
   setQuestionAndAnswers() {
     let index = this.selectRandomIndex()
-    while(this.randomNumbers.includes(index)){
+    while (this.randomNumbers.includes(index)) {
       index = this.selectRandomIndex()
     }
     console.log(this.randomNumbers)
+    this.disableButton = false
     this.question = this.questionList[index].question
     this.answers = this.questionList[index].answers
     this.randomNumbers.push(index)
   }
 
   nextStep() {
-
+    
+    this.maxQuestion++
     if (this.correctAnswer) {
-      console.log('responde bien, suma 1')
+      this.disableButton = true
       this.questionService.addCounter();
       console.log(this.questionService.counter)
       this.questionService.emitChange(false)
       setTimeout(() => {
-        this.counter++
         this.setQuestionAndAnswers()
       }, 3000);
-    }else{
-      console.log('responde mal, pasa a la siguiente')
-      console.log(this.questionService.counter)
+    } else {
+      this.disableButton = true
       setTimeout(() => {
-        this.counter++
         this.setQuestionAndAnswers()
       }, 3000);
 
-    if (this.counter > this.maxQuestion -1)
-    { 
-      this.router.navigate(['/new-game']);
+      if (this.counter > this.maxQuestion - 1) {
+        this.router.navigate(['/new-game']);
+
+      }
+      if (this.counter >= this.maxQuestion - 1) {
+        this.stageName = "Finalizar";
+      }
+
+      // else {
+      //   if (this.correctAnswer) {
+      //     this.questionService.emitChange(false)
+      //     setTimeout(() => {
+      //       this.counter++;
+      //       this.setQuestionAndAnswers()
+      //     }, 3000);
+      //   }
+      //   else {
+      //     setTimeout(() => {
+      //       this.counter++;
+      //       this.setQuestionAndAnswers()
+      //     }, 3000);
+      //   }
+      // }
 
     }
-    if (this.counter >= this.maxQuestion -1)
-    { 
-      this.stageName = "Finalizar";
-    }
-
-    else
-    { 
-      if (this.correctAnswer) {
-        this.questionService.emitChange(false)
-        setTimeout(() => {
-          this.counter++;
-          this.setQuestionAndAnswers()
-        }, 3000);
-      }
-      else
-      { 
-        setTimeout(() => {
-          this.counter++;
-          this.setQuestionAndAnswers()
-        }, 3000);
-      }
-    }
-    
   }
-
+}
