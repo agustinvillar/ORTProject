@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { QuiestionsService } from 'src/app/shared/question-service';
+import { QuestionsService } from 'src/app/shared/question-service';
 
 @Component({
   selector: 'app-game',
@@ -15,7 +15,7 @@ export class GameComponent implements OnInit {
   @Input() question = ""
   @Input() answers = []
 
-  constructor(private questionService: QuiestionsService) { }
+  constructor(private questionService: QuestionsService) { }
 
   ngOnInit() {
 

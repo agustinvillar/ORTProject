@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
     providedIn:'root',
 })
 
-  export class QuiestionsService{
+  export class QuestionsService{
 
     constructor(private firestore: Firestore) { }  
     
