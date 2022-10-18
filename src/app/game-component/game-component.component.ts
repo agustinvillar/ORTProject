@@ -11,7 +11,8 @@ export class GameComponentComponent implements OnInit {
 
   showEndingAnimation : boolean = false;
 
-
+  buttonTxt : string = 'Enviar respuestas';
+  resultTxt : string = '¡¡¡Felicidades!!!';
 
   constructor() { }
 
