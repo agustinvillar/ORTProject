@@ -64,9 +64,6 @@ export class NewGamePage implements OnInit {
   }
 
   nextStep() {
-
-    this.setQuestionAndAnswers()
-
     this.counter++
     console.log(this.counter, this.maxQuestion)
     if (this.correctAnswer) {
