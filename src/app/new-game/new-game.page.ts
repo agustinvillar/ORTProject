@@ -80,6 +80,7 @@ export class NewGamePage implements OnInit {
 
       if (this.correctAnswer) {
         console.log('está correcto correcto, esperar 4 segundos')
+        
         this.setQuestionAndAnswers()
 
       } else {
