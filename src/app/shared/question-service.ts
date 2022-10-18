@@ -14,6 +14,14 @@ import { Subject } from 'rxjs';
     private emitChangeSource = new Subject<any>()
     changeEmitted$ = this.emitChangeSource.asObservable()
     counter = 0
+    button = true
+
+    private isButtonBlocked = new Subject<boolean>()
+    buttonValue$ = this.isButtonBlocked.asObservable()
+
+    emitToggleButton(value : boolean){
+      this.isButtonBlocked.next(value)
+    }
 
     emitChange(change: any){
       this.emitChangeSource.next(change)

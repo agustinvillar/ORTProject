@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
 
   setAnswer(isCorrect: boolean) {
     let current = this.question
+    this.questionService.emitToggleButton(false)
     this.questionService.emitChange(isCorrect)
   }
 
