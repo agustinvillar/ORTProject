@@ -87,8 +87,11 @@ export class NewGamePage implements OnInit {
         this.setQuestionAndAnswers()
       }
 
+      
+
       if (this.counter === this.maxQuestion) {
         this.stageName = "Finalizar"
+        
       }
 
       this.counter++
@@ -98,27 +101,25 @@ export class NewGamePage implements OnInit {
         this.questionService.addCounter();
         console.log(this.questionService.counter)
         this.questionService.emitChange(false)
-        setTimeout(() => {
-          this.checkItsLastQuestion();
-          this.setQuestionAndAnswers()
-        }, 3000);
+        // setTimeout(() => {
+        //   this.checkItsLastQuestion();
+        // }, 3000);
       } else {
         this.disableButton = true
-        setTimeout(() => {
-          this.checkItsLastQuestion();
-          this.setQuestionAndAnswers()
-        }, 3000);
+        // setTimeout(() => {
+        //   this.checkItsLastQuestion();
+        //   this.setQuestionAndAnswers()
+        // }, 3000);
       }
     }
 
-
-  }
-  private checkItsLastQuestion() {
-
     if (this.counter > this.maxQuestion) {
-      console.log('llegue');
-      this.router.navigate(['/game-questions']);
-      return true;
+      console.log('llegue, esperar 5');
+      setTimeout(() => {
+        this.router.navigate(['/game-questions']);
+        
+      }, this.timeout);
     }
+
   }
 }
