@@ -1,19 +1,9 @@
-<!-- <ion-list class="ionic-list">
-  <ion-radio-group value="custom-checked">
-    <h3>{{questions.questiion}}</h3>
-    <ion-item class="item" *ngFor="let option of questions.answers">
-      <ion-label>{{option.answer}}</ion-label>
-      <ion-radio value="{{option.answer}}" class="random" slot="start"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-</ion-list> -->
-
 <ion-list>
   <ion-radio-group>
     <h3>{{question}}</h3>
     <ion-item *ngFor="let answer of answers">
       <ion-label>{{answer.answer}}</ion-label>
-      <ion-radio  slot="start" (ionFocus)="mostrar(answer.isCorrect)" value="{{answer.answer}}"></ion-radio>
+      <ion-radio  slot="start" (ionFocus)="setAnswer(answer.isCorrect)" value="{{answer.answer}}"></ion-radio>
     </ion-item>
   </ion-radio-group>
 </ion-list>

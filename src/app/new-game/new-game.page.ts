@@ -14,24 +14,38 @@ export class NewGamePage implements OnInit {
   question: string
   answers: Answer[]
   counter: number = 0
-  gameReady: boolean = false
+  disableButton = true
   correctAnswer: boolean
+  randomNumbers = []
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
       this.questionList = question
+      console.log(this.questionList)
 
       this.setQuestionAndAnswers()
-      this.gameReady = true
+      
       this.questionService.changeEmitted$.subscribe(data => {
         this.correctAnswer = data
+        this.disableButton = false
+        
       })
     })
   }
 
   nextStep() {
     if (this.correctAnswer) {
+      console.log('responde bien, suma 1')
+      this.questionService.addCounter();
+      console.log(this.questionService.counter)
       this.questionService.emitChange(false)
+      setTimeout(() => {
+        this.counter++
+        this.setQuestionAndAnswers()
+      }, 3000);
+    }else{
+      console.log('responde mal, pasa a la siguiente')
+      console.log(this.questionService.counter)
       setTimeout(() => {
         this.counter++
         this.setQuestionAndAnswers()
@@ -40,10 +54,14 @@ export class NewGamePage implements OnInit {
   }
 
   setQuestionAndAnswers() {
-    const index = this.selectRandomIndex()
+    let index = this.selectRandomIndex()
+    while(this.randomNumbers.includes(index)){
+      index = this.selectRandomIndex()
+    }
+    console.log(this.randomNumbers)
     this.question = this.questionList[index].question
     this.answers = this.questionList[index].answers
-    this.removeQuestionFromList(index)
+    this.randomNumbers.push(index)
   }
 
   removeQuestionFromList(index: number) {
@@ -51,7 +69,7 @@ export class NewGamePage implements OnInit {
   }
 
   selectRandomIndex() {
-    const index = Math.floor(Math.random() * this.questionList.length) + 1;
+    const index = Math.floor(Math.random() * this.questionList.length - 1);
     return index
   }
 }

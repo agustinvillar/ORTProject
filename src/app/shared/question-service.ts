@@ -13,9 +13,18 @@ import { Subject } from 'rxjs';
     
     private emitChangeSource = new Subject<any>()
     changeEmitted$ = this.emitChangeSource.asObservable()
+    counter = 0
 
     emitChange(change: any){
       this.emitChangeSource.next(change)
+    }
+
+    addCounter(){
+      this.counter++
+    }
+
+    resetCounter(){
+      this.counter = 0;
     }
     
     async getQuestions(): Promise<Question[]>{
@@ -25,6 +34,7 @@ import { Subject } from 'rxjs';
         querySnapshot.forEach((doc) => {
             questionList.push(doc.data())
          });
+         console.log(questionList)
    
     return questionList
     }

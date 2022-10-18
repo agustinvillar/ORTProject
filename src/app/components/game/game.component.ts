@@ -12,7 +12,7 @@ import { QuiestionsService } from 'src/app/shared/question-service';
 })
 export class GameComponent implements OnInit {
 
-  @Input() question = "nada"
+  @Input() question = ""
   @Input() answers = []
 
   constructor(private questionService: QuiestionsService) { }
@@ -21,7 +21,8 @@ export class GameComponent implements OnInit {
 
   }
 
-  mostrar(isCorrect: boolean) {
+  setAnswer(isCorrect: boolean) {
+    let current = this.question
     this.questionService.emitChange(isCorrect)
   }
 
