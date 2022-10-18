@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Answer } from '../shared/asnwer';
 import { Question } from '../shared/question';
 import { QuestionsService } from '../shared/question-service';
 import { Router } from '@angular/router';
+import { GameComponent } from '../components/game/game.component';
 
 @Component({
   selector: 'app-new-game',
@@ -14,6 +15,8 @@ export class NewGamePage implements OnInit {
   constructor(private questionService: QuestionsService, private router: Router) {
 
   }
+
+  @ViewChild(GameComponent) child: GameComponent;
   questionList: Question[]
   question: string
   answers: Answer[]
@@ -64,6 +67,7 @@ export class NewGamePage implements OnInit {
       }
       this.question = this.questionList[index].question
       this.answers = this.questionList[index].answers
+      this.child.resetColors();
       this.randomNumbers.push(index)
       console.log(index)
       console.log(this.randomNumbers)
@@ -72,8 +76,8 @@ export class NewGamePage implements OnInit {
   }
 
   nextStep() {
-
     this.questionService.emitToggleButton(true)
+    this.child.changeColors();
 
     if (this.stageName === "Siguiente") {
       console.log('entre en siguiente')
