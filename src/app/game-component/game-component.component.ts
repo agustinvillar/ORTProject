@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { QuestionsService } from '../shared/question-service';
 
 @Component({
   selector: 'app-game-component',
@@ -8,19 +9,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameComponentComponent implements OnInit {
  
   questions: any
-  showEndingAnimation : boolean = false;
   correctAnswers : number = 0;
   buttonTxt : string = 'Enviar respuestas';
   resultTxt : string = '¡Felicidades!';
   correctAnswersTxt : string = 'Respuestas correctas : '+this.correctAnswers;
 
-  constructor() { }
+  constructor(private questionService: QuestionsService) { }
 
   ngOnInit() {
-      this.questions = {questiion:"Los trainees son los propios?",answers:[{answer:"Obvio pa",isCorrect:true},{answer:"nope",isCorrect:false},{answer:"masomenos",isCorrect:false},{answer:"tengo mis dudas",isCorrect:false}]}
-  }
-
-  show(){
-    this.showEndingAnimation = true;
+      this.correctAnswers = this.questionService.counter;
   }
 }

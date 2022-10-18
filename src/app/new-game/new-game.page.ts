@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from '../shared/asnwer';
 import { Question } from '../shared/question';
-import { QuiestionsService } from '../shared/question-service';
+import { QuestionsService } from '../shared/question-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NewGamePage implements OnInit {
 
-  constructor(private questionService: QuiestionsService, private router: Router) {
+  constructor(private questionService: QuestionsService, private router: Router) {
 
   }
   questionList: Question[]
@@ -75,23 +75,32 @@ export class NewGamePage implements OnInit {
       console.log(this.questionService.counter)
       this.questionService.emitChange(false)
       setTimeout(() => {
-        this.setQuestionAndAnswers()
+        var last = this.checkItsLastQuestion();
+        if (!last){
+          this.setQuestionAndAnswers()
+        }
       }, 3000);
     } else {
       this.disableButton = true
       setTimeout(() => {
-        this.setQuestionAndAnswers()
+        var last = this.checkItsLastQuestion();
+        if (!last){
+          this.setQuestionAndAnswers()
+        }
       }, 3000);
+    }
+  }
 
-      if (this.counter > this.maxQuestion - 1) {
-        console.log('llegue')
-        this.router.navigate(['/new-game']);
-
-      }
-      if (this.counter >= this.maxQuestion - 1) {
-        console.log('llegue')
-        this.stageName = "Finalizar";
-      }
+  private checkItsLastQuestion() : boolean {
+    if (this.counter == this.maxQuestion) {
+      console.log('llegue');
+      this.stageName = "Finalizar";
+      return false;
+    }
+    if (this.counter > this.maxQuestion) {
+      console.log('llegue');
+      this.router.navigate(['/game-questions']);
+      return true;
     }
   }
 }
