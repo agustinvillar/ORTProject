@@ -10,7 +10,7 @@
 
 .ionic-list{
     margin-top: 0;
-    border: 1px solid #f2f2f2;
+    border: 0.0625em solid #f2f2f2;
 }
 
 h3{
@@ -21,13 +21,13 @@ h3{
 
 
 ion-radio {
-    width: 30px;
-    height: 30px;
+    width: 1.875em;
+    height: 1.875em;
   }
   
   ion-radio::part(container) {
-    border-radius: 8px;
-    border: 2px solid #ddd;
+    border-radius: 0.5em;
+    border: 0.125em solid #ddd;
   }
   
   ion-radio::part(mark) {
@@ -43,10 +43,10 @@ ion-radio {
   }
   
   ion-radio.radio-checked::part(mark) {
-    width: 6px;
-    height: 10px;
+    width: 0.375em;
+    height: 0.625em;
   
-    border-width: 0px 2px 2px 0px;
+    border-width: 0em 0.125em 0.125em 0em;
     border-style: solid;
     border-color: #FFF;
   
@@ -85,7 +85,7 @@ ion-radio {
   }
   
   .app-label {
-    margin-top: 32px;
+    margin-top: 2rem;
     color: #fff;
     font-size: 2.5em;
     /* font-family: "Pacifico", cursive; */
@@ -104,9 +104,9 @@ ion-radio {
     max-width: 100%;
     background-position: center;
     background-size: contain;
-    width: 100px;
-    height: 100px;
-    padding: 10px;
+    width: 6.25em;
+    height: 6.25em;
+    padding: 0.625em;
   }
   
   .app-loader {
@@ -115,9 +115,9 @@ ion-radio {
     max-width: 100%;
     background-position: center;
     background-size: contain;
-    width: 80px;
-    height: 80px;
-    margin-top: 80px;
+    width: 5em;
+    height: 5em;
+    margin-top: 5em;
   }
 
   

@@ -7,12 +7,12 @@
     </ion-item>
   </ion-radio-group>
 </ion-list>
-<ion-button (click)="show()">Enviar respuestas</ion-button>
+<ion-button (click)="show()">{{buttonTxt}}</ion-button>
 <div class="app-splash-screen" *ngIf="showEndingAnimation">
   <div class="app-splash-inner">
     <div class="app-logo"></div>
     <div class="app-label">
-      <h2>¡¡¡Felicidades!!!</h2>
+      <h2>{{resultTxt}}</h2>
     </div>
   </div>
 </div>
