@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
-import { NewPlayer } from '../shared/new-player';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Player } from '../shared/new-player';
+import { Firestore, collection, addDoc, getDocs } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,7 +9,7 @@ export class NewPlayerService {
 
   constructor(private firestore: Firestore) { }
   // Create
-  createNewPlayer(player: NewPlayer) {
+  createNewPlayer(player: Player) {
     const playerRef = collection(this.firestore, 'players')
     console.log(player);
     const newPlayer = {
@@ -23,5 +23,14 @@ export class NewPlayerService {
     }
     // Add to Firestore
     return addDoc(playerRef, newPlayer)
+  }
+
+  async getPlayers(): Promise<Player[]>{
+    const playerList =[]
+          const querySnapshot = await getDocs(collection(this.firestore, "players"));
+        querySnapshot.forEach((doc) => {
+            playerList.push(doc.data())
+         });
+         return playerList
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NewPlayerService } from './../shared/new-player.service';
+import { DataService } from '../data.service';
+import { Player } from '../shared/new-player';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +15,14 @@ export class HomePage implements OnInit {
   constructor(
     private playerService: NewPlayerService,
     private router: Router,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private data: DataService
+  ) { }
+  playerList: Player[]
 
   ngOnInit() {
     this.playerForm = this.fb.group({
+
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -25,7 +30,15 @@ export class HomePage implements OnInit {
       semester: ['', [Validators.required, Validators.max(12), Validators.min(1)]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       isWorking: ['true', [Validators.required]]
+
     })
+    this.playerService.getPlayers().then((player) => {
+      this.playerList = player
+    })
+  }
+
+  exportToExcel() {
+    this.data.exportToExcel(this.playerList, 'Players')
   }
   formSubmit() {
     if (!this.playerForm.valid) {
@@ -37,5 +50,4 @@ export class HomePage implements OnInit {
         .catch(error => console.log(error));
     }
   }
-
 }
