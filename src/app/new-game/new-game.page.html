@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>new-game</ion-title>
+    <ion-title>UKG Survey</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <app-game [question]="question" [answers]="answers"></app-game>
 </ion-content>
 
 <ion-footer>
-  <ion-button (click)="nextStep()" [disabled]="!gameReady" expand="block">Siguiente</ion-button>
+  <ion-button (click)="nextStep()" [disabled]="disableButton" expand="block">{{stageName}}</ion-button>
 </ion-footer>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NewPlayerService } from './../shared/new-player.service';
 import { DataService } from '../data.service';
 import { Player } from '../shared/new-player';
@@ -46,12 +46,9 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
-        console.log(res)
-        this.playerForm.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/new-game']);
       })
         .catch(error => console.log(error));
     }
   }
-
 }

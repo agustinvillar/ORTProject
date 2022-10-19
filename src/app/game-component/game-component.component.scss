@@ -1,0 +1,123 @@
+:root {
+  --branding-primary-color: #378275;
+  --branding-alert-bg-color: #EB5F5F;
+  --branding-header-bg-color: #005151;
+  --branding-header-text-color: #ffffff;
+  --branding-header-icon-color: #ffffff;
+  --branding-footer-bg-color: #005151;
+  --branding-footer-text-color: #ffffff;
+}
+
+.ionic-list{
+    margin-top: 0;
+    border: 0.0625em solid #f2f2f2;
+}
+
+h3{
+    color: #58595b;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+
+ion-radio {
+    width: 1.875em;
+    height: 1.875em;
+  }
+  
+  ion-radio::part(container) {
+    border-radius: 0.5em;
+    border: 0.125em solid #ddd;
+  }
+  
+  ion-radio::part(mark) {
+    background: none;
+    transition: none;
+    transform: none;
+    border-radius: 0;
+  }
+  
+  ion-radio.radio-checked::part(container) {
+    background: var(branding-footer-bg-color);
+    border-color: transparent;
+  }
+  
+  ion-radio.radio-checked::part(mark) {
+    width: 0.375em;
+    height: 0.625em;
+  
+    border-width: 0em 0.125em 0.125em 0em;
+    border-style: solid;
+    border-color: #FFF;
+  
+    transform: rotate(45deg);
+  }
+
+.ion-page{
+    display: block;
+  }
+
+  .app-splash-screen {
+    background: transparent url("../../assets/ending-animation/confetti.svg");
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+
+    left: windowWidth; 
+    opacity: opacityChange;
+    transition: splashTransition;
+
+    .app-splash-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .app-label {
+    margin-top: 2rem;
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+
+    .inside-txt{
+      margin-top: 0.5em;
+    }
+  }
+  
+  
+  
+  .app-logo {
+    background: transparent url("../../assets/icons/UKG-logo-white.png");
+    background-repeat: no-repeat;
+    max-width: 100%;
+    background-position: center;
+    background-size: contain;
+    width: 12em;
+    height: 12em;
+    padding: 0.625em;
+  }
+  
+  .app-loader {
+    background: url("../../assets/ending-animation/confetti.svg");
+    background-repeat: no-repeat;
+    max-width: 100%;
+    background-position: center;
+    background-size: contain;
+    width: 5em;
+    height: 5em;
+    margin-top: 5em;
+  }
+
+  
