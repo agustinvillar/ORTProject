@@ -1,6 +1,7 @@
 <ion-list>
   <ion-radio-group>
     <h3>{{question}}</h3>
+    <ion-item *ngIf="showNote">{{note}}</ion-item>
     <ion-item *ngFor="let answer of answers;let i = index">
       <ion-label [style.backgroundColor]="buttonColor[i]">{{answer.answer}}</ion-label>
       <ion-radio  slot="start" (ionFocus)="setAnswer(answer.isCorrect)" value="{{answer.answer}}"></ion-radio>

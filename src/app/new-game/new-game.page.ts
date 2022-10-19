@@ -11,7 +11,7 @@ import { GameComponent } from '../components/game/game.component';
   styleUrls: ['./new-game.page.scss'],
 })
 export class NewGamePage implements OnInit {
-
+  
   constructor(private questionService: QuestionsService, private router: Router) {
 
   }
@@ -21,6 +21,7 @@ export class NewGamePage implements OnInit {
   question: string
   answers: Answer[]
   counter: number = 0
+  note: string;
 
   disableButton = true
   correctAnswer: boolean
@@ -28,7 +29,7 @@ export class NewGamePage implements OnInit {
   maxQuestion: number = 3;
   gameReady: boolean = false
   stageName: string = "Siguiente";
-  timeout = 2500
+  timeout = 3000
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
@@ -64,9 +65,11 @@ export class NewGamePage implements OnInit {
         index = this.selectRandomIndex()
       }
       this.question = this.questionList[index].question
+      this.note = this.questionList[index].note
       this.answers = this.questionList[index].answers
       this.child.resetColors();
       this.randomNumbers.push(index)
+      this.child.hideNote();
     }, this.timeout);
 
   }
@@ -77,6 +80,7 @@ export class NewGamePage implements OnInit {
       index = this.selectRandomIndex()
     }
     this.question = this.questionList[index].question
+    this.note = this.questionList[index].note
     this.answers = this.questionList[index].answers
     this.child.resetColors();
     this.randomNumbers.push(index)
@@ -85,6 +89,8 @@ export class NewGamePage implements OnInit {
   nextStep() {
     this.questionService.emitToggleButton(true)
     this.child.changeColors();
+    this.child.showNoteMethod();
+    
 
     if (this.stageName === "Siguiente") {
 
