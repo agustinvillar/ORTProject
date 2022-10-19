@@ -7,6 +7,8 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 })
 export class NewPlayerService {
 
+  playerName: String
+
   constructor(private firestore: Firestore) { }
   // Create
   createNewPlayer(player: NewPlayer) {
@@ -21,6 +23,7 @@ export class NewPlayerService {
       semester: player.semester,
       isWorking: player.isWorking
     }
+    this.playerName = player.name
     // Add to Firestore
     return addDoc(playerRef, newPlayer)
   }

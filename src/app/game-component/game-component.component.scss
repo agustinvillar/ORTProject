@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+
 :root {
   --branding-primary-color: #378275;
   --branding-alert-bg-color: #EB5F5F;
@@ -91,9 +93,9 @@ ion-radio {
     color: #fff;
     text-transform: uppercase;
 
-    .inside-txt{
+    div {
       margin-top: 0.5em;
-      font-family: ro;
+      font-family: 'Noto Sans', sans-serif;
     }
   }
   
@@ -120,5 +122,3 @@ ion-radio {
     height: 5em;
     margin-top: 5em;
   }
-
-  
