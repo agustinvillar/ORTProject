@@ -33,7 +33,6 @@ export class NewGamePage implements OnInit {
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
       this.questionList = question
-      console.log(this.questionList)
 
       this.setQuestionAndAnswersWithoutTimeout()
 
@@ -46,7 +45,6 @@ export class NewGamePage implements OnInit {
       })
       this.questionService.emitToggleButton(true)
 
-      console.log(this.disableButton)
     })
   }
 
@@ -69,8 +67,6 @@ export class NewGamePage implements OnInit {
       this.answers = this.questionList[index].answers
       this.child.resetColors();
       this.randomNumbers.push(index)
-      console.log(index)
-      console.log(this.randomNumbers)
     }, this.timeout);
 
   }
@@ -84,8 +80,6 @@ export class NewGamePage implements OnInit {
     this.answers = this.questionList[index].answers
     this.child.resetColors();
     this.randomNumbers.push(index)
-    console.log(index)
-    console.log(this.randomNumbers)
   }
 
   nextStep() {
@@ -93,15 +87,12 @@ export class NewGamePage implements OnInit {
     this.child.changeColors();
 
     if (this.stageName === "Siguiente") {
-      console.log('entre en siguiente')
 
       if (this.correctAnswer) {
-        console.log('está correcto correcto, esperar 4 segundos')
 
         this.setQuestionAndAnswers()
 
       } else {
-        console.log('no está correcto, esperar 4 segundos')
         this.setQuestionAndAnswers()
       }
 
@@ -113,11 +104,9 @@ export class NewGamePage implements OnInit {
       }
 
       this.counter++
-      console.log(this.counter, this.maxQuestion)
       if (this.correctAnswer) {
         this.disableButton = true
         this.questionService.addCounter();
-        console.log(this.questionService.counter)
         this.questionService.emitChange(false)
         // setTimeout(() => {
         //   this.checkItsLastQuestion();
@@ -132,7 +121,6 @@ export class NewGamePage implements OnInit {
     }
 
     if (this.counter > this.maxQuestion) {
-      console.log('llegue, esperar 5');
       setTimeout(() => {
         this.router.navigate(['/game-questions']);
 

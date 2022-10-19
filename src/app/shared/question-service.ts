@@ -42,7 +42,6 @@ import { Subject } from 'rxjs';
         querySnapshot.forEach((doc) => {
             questionList.push(doc.data())
          });
-         console.log(questionList)
    
     return questionList
     }
