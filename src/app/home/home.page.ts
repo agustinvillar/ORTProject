@@ -16,31 +16,30 @@ export class HomePage implements OnInit {
     private playerService: NewPlayerService,
     private router: Router,
     private fb: FormBuilder,
-    private data : DataService
-  ) {}
-  playerList:Player[]
+    private data: DataService
+  ) { }
+  playerList: Player[]
 
   ngOnInit() {
     this.playerForm = this.fb.group({
-      name: [''],
-      lastName: [''],
-      email: [''],
-      carreer: [''],
-      semester: [''],
-      mobile: [''],
-      isWorking: ['']
+
+      name: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      carreer: ['', [Validators.required]],
+      semester: ['', [Validators.required, Validators.max(12), Validators.min(1)]],
+      mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      isWorking: ['true', [Validators.required]]
 
     })
-    this.playerService.getPlayers().then((player)=>{
-      this.playerList=player
-      console.log(this.playerList)
+    this.playerService.getPlayers().then((player) => {
+      this.playerList = player
     })
   }
 
-  exportToExcel(){
-    this.data.exportToExcel(this.playerList,'Players')
+  exportToExcel() {
+    this.data.exportToExcel(this.playerList, 'Players')
   }
-  
   formSubmit() {
     if (!this.playerForm.valid) {
       return false;
