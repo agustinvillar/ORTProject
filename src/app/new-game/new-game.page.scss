@@ -1,5 +1,6 @@
 img{
     max-width: 5rem;
+    margin-left: 1rem;
   }
   
   header{
@@ -8,13 +9,29 @@ img{
   }
 
   ion-button{
-    --background: #005151;
+    --background: #0176B2;
   }
 
 ion-content{
     padding-left: 10px;
 }
 
+ion-footer{
+  padding: 1.5rem;
+}
+
 #container{
     padding-left: 1rem;
+}
+
+app-game{
+  padding: 1.5rem;
+}
+
+ion-title{
+  padding: 1rem;
+}
+
+#random{
+  padding: 1.5rem;
 }

@@ -10,6 +10,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title style="text-align: center;">Registro de usuario</ion-title>
+    <div style="color: grey; text-align: center; margin-top: 2px;">*Todos los campos son obligatorios</div>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -42,10 +43,8 @@
       <ion-label >Estás trabajando?</ion-label>
       <ion-toggle item-start formControlName="isWorking"  color="success" [checked]="true" type="boolean"></ion-toggle>
     </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="primary" expand="block">Continuar</ion-button>
-      </ion-col>
-    </ion-row>
   </form>
 </ion-content>
+<ion-footer>
+  <ion-button type="submit" color="primary" expand="block">Continuar</ion-button>
+</ion-footer>

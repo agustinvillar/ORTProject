@@ -28,7 +28,7 @@ export class NewGamePage implements OnInit {
   maxQuestion: number = 3;
   gameReady: boolean = false
   stageName: string = "Siguiente";
-  timeout = 5000
+  timeout = 2500
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
