@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+const homePath = 'home';
+const newGamePath = 'new-game';
+const gameQuestionsPath = 'game-questions';
+
 const routes: Routes = [
   {
-    path: 'home',
+    path: homePath,
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -12,8 +16,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'new-game',
+    path: newGamePath,
     loadChildren: () => import('./new-game/new-game.module').then( m => m.NewGamePageModule)
+  },
+  {
+    path: gameQuestionsPath,
+    loadChildren: () => import('./game-component/game-component.module').then( m => m.GameComponentModule)
   },
 ];
 

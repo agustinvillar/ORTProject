@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { NewPlayerService } from './../shared/new-player.service';
 
 @Component({
@@ -18,13 +18,13 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.playerForm = this.fb.group({
-      name: [''],
-      lastName: [''],
-      email: [''],
-      carreer: [''],
-      semester: [''],
-      mobile: [''],
-      isWorking: ['']
+      name: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      carreer: ['', [Validators.required]],
+      semester: ['', [Validators.required, Validators.max(12), Validators.min(1)]],
+      mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      isWorking: ['true', [Validators.required]]
     })
   }
   formSubmit() {
@@ -32,9 +32,7 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
-        console.log(res)
-        this.playerForm.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/new-game']);
       })
         .catch(error => console.log(error));
     }
