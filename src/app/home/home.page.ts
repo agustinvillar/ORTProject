@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       carreer: ['', [Validators.required]],
-      semester: ['', [Validators.required, Validators.max(12), Validators.min(1)]],
+      semester: ['', [Validators.required, Validators.max(10), Validators.min(1)]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       isWorking: ['true', [Validators.required]]
     })
