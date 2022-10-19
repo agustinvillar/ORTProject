@@ -16,6 +16,8 @@ export class HomePage implements OnInit {
     private fb: FormBuilder
   ) {}
 
+  showSplash = false;
+
   ngOnInit() {
     this.playerForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -31,6 +33,7 @@ export class HomePage implements OnInit {
     if (!this.playerForm.valid) {
       return false;
     } else {
+      this.showSplash = true;
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
         this.router.navigate(['/new-game']);
       })
