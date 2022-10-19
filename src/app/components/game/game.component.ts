@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
 
   @Input() question = ""
   @Input() answers: Answer[] = []
+  @Input() note: ""
 
   red = '#ffb3b3';
   green = '#b3ffb3';

@@ -42,3 +42,13 @@ ion-button{
 ion-footer{
   margin-bottom: 3rem;
 }
+
+ion-content{
+  form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 95%;
+  }
+}

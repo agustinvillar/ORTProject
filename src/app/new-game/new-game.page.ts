@@ -19,6 +19,7 @@ export class NewGamePage implements OnInit {
   @ViewChild(GameComponent) child: GameComponent;
   questionList: Question[]
   question: string
+  note: String
   answers: Answer[]
   counter: number = 0
 
@@ -82,6 +83,7 @@ export class NewGamePage implements OnInit {
     }
     this.question = this.questionList[index].question
     this.answers = this.questionList[index].answers
+    this.note = this.questionList[index].note
     this.child.resetColors();
     this.randomNumbers.push(index)
     console.log(index)
