@@ -3,7 +3,7 @@
 [animationDuration]="0.5"></app-splash-screen>
 <ion-header>
   <header>
-    <img src="../../assets/icons/UKG-logo-white.png">
+    <img src="../../assets/icons/UKG-logo-white.png" alt="ukg-logo">
   </header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -36,7 +36,7 @@
       <ion-input formControlName="carreer" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Semestre en curso:</ion-label>
+      <ion-label position="floating">Semestre en curso (1-10):</ion-label>
       <ion-input formControlName="semester" type="number" required></ion-input>
     </ion-item>
     <ion-item lines="full">
@@ -46,7 +46,7 @@
   </form>
 </ion-content>
 <ion-footer>
-  <ion-button type="submit" color="primary" expand="block">Continuar</ion-button>
+  <ion-button type="submit" color="primary" expand="block" [disabled]="!playerForm.valid">Continuar</ion-button>
 </ion-footer>
 <div
   class="app-splash-screen"
