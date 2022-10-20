@@ -13,7 +13,6 @@ export class NewPlayerService {
   // Create
   createNewPlayer(player: NewPlayer) {
     const playerRef = collection(this.firestore, 'players')
-    console.log(player);
     const newPlayer = {
       name: player.name,
       email: player.email,
