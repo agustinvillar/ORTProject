@@ -90,8 +90,8 @@ export class NewGamePage implements OnInit {
     this.questionService.emitToggleButton(true)
     this.child.changeColors();
     this.child.showNoteMethod();
-    
-
+  
+    this.counter ++;
     if (this.stageName === "Siguiente") {
 
       if (this.correctAnswer) {
@@ -102,14 +102,10 @@ export class NewGamePage implements OnInit {
         this.setQuestionAndAnswers()
       }
 
-
-
+      
       if (this.counter === this.maxQuestion) {
         this.stageName = "Finalizar"
-
       }
-
-      this.counter++
       if (this.correctAnswer) {
         this.disableButton = true
         this.questionService.addCounter();
