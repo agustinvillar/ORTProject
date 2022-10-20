@@ -19,7 +19,7 @@ export class GameComponent implements OnInit {
 
   red = '#ffb3b3';
   green = '#b3ffb3';
-  white = '#FFFFFF';
+  white = 'transparent';
 
   private buttonColor: string[] = [];
 
