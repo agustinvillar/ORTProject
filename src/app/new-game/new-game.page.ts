@@ -28,7 +28,7 @@ export class NewGamePage implements OnInit {
   randomNumbers = []
   maxQuestion: number = 3;
   gameReady: boolean = false
-  stageName: string = "Siguiente";
+  stageName: string = "Continuar";
   timeout = 3000
 
   ngOnInit() {
@@ -91,43 +91,24 @@ export class NewGamePage implements OnInit {
     this.child.changeColors();
     this.child.showNoteMethod();
   
-    this.counter ++;
-    if (this.stageName === "Siguiente") {
+    
+    if (this.stageName === "Continuar") {
 
-      if (this.correctAnswer) {
-
-        this.setQuestionAndAnswers()
-
-      } else {
-        this.setQuestionAndAnswers()
-      }
-
-      
-      if (this.counter === this.maxQuestion) {
-        this.stageName = "Finalizar"
-      }
       if (this.correctAnswer) {
         this.disableButton = true
         this.questionService.addCounter();
         this.questionService.emitChange(false)
-        // setTimeout(() => {
-        //   this.checkItsLastQuestion();
-        // }, 3000);
       } else {
         this.disableButton = true
-        // setTimeout(() => {
-        //   this.checkItsLastQuestion();
-        //   this.setQuestionAndAnswers()
-        // }, 3000);
+      }
+      this.setQuestionAndAnswers();
+      this.counter ++;
+      if (this.counter == this.maxQuestion) {
+        this.stageName = "Continuar"
+        setTimeout(() => {
+          this.router.navigate(['/game-questions']);
+        }, this.timeout-500);
       }
     }
-
-    if (this.counter > this.maxQuestion) {
-      setTimeout(() => {
-        this.router.navigate(['/game-questions']);
-
-      }, this.timeout);
-    }
-
   }
 }
