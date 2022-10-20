@@ -19,10 +19,9 @@ export class NewGamePage implements OnInit {
   @ViewChild(GameComponent) child: GameComponent;
   questionList: Question[]
   question: string
-  note: String
   answers: Answer[]
   counter: number = 0
-  note: string;
+  note: string
 
   disableButton = true
   correctAnswer: boolean
@@ -83,7 +82,6 @@ export class NewGamePage implements OnInit {
     this.question = this.questionList[index].question
     this.note = this.questionList[index].note
     this.answers = this.questionList[index].answers
-    this.note = this.questionList[index].note
     this.child.resetColors();
     this.randomNumbers.push(index)
   }
