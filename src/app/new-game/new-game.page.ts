@@ -11,7 +11,7 @@ import { GameComponent } from '../components/game/game.component';
   styleUrls: ['./new-game.page.scss'],
 })
 export class NewGamePage implements OnInit {
-
+  
   constructor(private questionService: QuestionsService, private router: Router) {
 
   }
@@ -22,6 +22,7 @@ export class NewGamePage implements OnInit {
   note: String
   answers: Answer[]
   counter: number = 0
+  note: string;
 
   disableButton = true
   correctAnswer: boolean
@@ -29,12 +30,11 @@ export class NewGamePage implements OnInit {
   maxQuestion: number = 3;
   gameReady: boolean = false
   stageName: string = "Siguiente";
-  timeout = 2500
+  timeout = 3000
 
   ngOnInit() {
     this.questionService.getQuestions().then((question) => {
       this.questionList = question
-      console.log(this.questionList)
 
       this.setQuestionAndAnswersWithoutTimeout()
 
@@ -47,7 +47,6 @@ export class NewGamePage implements OnInit {
       })
       this.questionService.emitToggleButton(true)
 
-      console.log(this.disableButton)
     })
   }
 
@@ -67,11 +66,11 @@ export class NewGamePage implements OnInit {
         index = this.selectRandomIndex()
       }
       this.question = this.questionList[index].question
+      this.note = this.questionList[index].note
       this.answers = this.questionList[index].answers
       this.child.resetColors();
       this.randomNumbers.push(index)
-      console.log(index)
-      console.log(this.randomNumbers)
+      this.child.hideNote();
     }, this.timeout);
 
   }
@@ -82,28 +81,26 @@ export class NewGamePage implements OnInit {
       index = this.selectRandomIndex()
     }
     this.question = this.questionList[index].question
+    this.note = this.questionList[index].note
     this.answers = this.questionList[index].answers
     this.note = this.questionList[index].note
     this.child.resetColors();
     this.randomNumbers.push(index)
-    console.log(index)
-    console.log(this.randomNumbers)
   }
 
   nextStep() {
     this.questionService.emitToggleButton(true)
     this.child.changeColors();
+    this.child.showNoteMethod();
+    
 
     if (this.stageName === "Siguiente") {
-      console.log('entre en siguiente')
 
       if (this.correctAnswer) {
-        console.log('está correcto correcto, esperar 4 segundos')
 
         this.setQuestionAndAnswers()
 
       } else {
-        console.log('no está correcto, esperar 4 segundos')
         this.setQuestionAndAnswers()
       }
 
@@ -115,11 +112,9 @@ export class NewGamePage implements OnInit {
       }
 
       this.counter++
-      console.log(this.counter, this.maxQuestion)
       if (this.correctAnswer) {
         this.disableButton = true
         this.questionService.addCounter();
-        console.log(this.questionService.counter)
         this.questionService.emitChange(false)
         // setTimeout(() => {
         //   this.checkItsLastQuestion();
@@ -134,7 +129,6 @@ export class NewGamePage implements OnInit {
     }
 
     if (this.counter > this.maxQuestion) {
-      console.log('llegue, esperar 5');
       setTimeout(() => {
         this.router.navigate(['/game-questions']);
 

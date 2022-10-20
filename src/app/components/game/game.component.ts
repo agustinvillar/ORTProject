@@ -14,6 +14,7 @@ import { QuestionsService } from 'src/app/shared/question-service';
 export class GameComponent implements OnInit {
 
   @Input() question = ""
+  @Input() note = ""
   @Input() answers: Answer[] = []
   @Input() note: ""
 
@@ -22,6 +23,8 @@ export class GameComponent implements OnInit {
   white = '#FFFFFF';
 
   private buttonColor: string[] = [];
+
+  showNote = false;
 
   constructor(private questionService: QuestionsService) { }
 
@@ -46,6 +49,16 @@ export class GameComponent implements OnInit {
     for (var i = 0; i < 15; i++) {
       this.buttonColor[i] = this.white;
     }
+  }
+
+  showNoteMethod(){
+    if(this.note != ""){
+      this.showNote = true;
+    }
+  }
+
+  hideNote(){
+    this.showNote = false;
   }
 
   setAnswer(isCorrect: boolean) {
