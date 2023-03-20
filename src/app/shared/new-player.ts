@@ -3,7 +3,5 @@ export class NewPlayer {
     lastName: string;
     email: string
     mobile: string;
-    carreer: string;
-    semester: number;
-    isWorking: boolean;
+    acceptsConditions : boolean;
 }

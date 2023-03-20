@@ -18,9 +18,7 @@ export class NewPlayerService {
       email: player.email,
       mobile: player.mobile,
       lastName: player.lastName,
-      carreer: player.carreer,
-      semester: player.semester,
-      isWorking: player.isWorking
+      acceptsConditions: player.acceptsConditions
     }
     this.playerName = player.name
     // Add to Firestore
