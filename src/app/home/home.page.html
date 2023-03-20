@@ -32,16 +32,18 @@
       <ion-input formControlName="mobile" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Carrera universitaria:</ion-label>
-      <ion-input formControlName="carreer" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Semestre en curso:</ion-label>
-      <ion-input formControlName="semester" type="number" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label >Estás trabajando?</ion-label>
-      <ion-toggle item-start formControlName="isWorking"  color="success" [checked]="true" type="boolean"></ion-toggle>
+      <ion-checkbox slot="start" formControlName="acceptsConditions" required></ion-checkbox>
+        <ion-item class="item-text-wrap">
+          Acepto : 
+          De conformidad con la Ley N° 18.331, de Protección de Datos Personales y
+        Acción de Habeas Data, de 11 de agosto de 2008 (LPDP), los datos
+        suministrados los días 24 y 25 de Marzo quedaran incorporados en la Base de
+        Datos UKG Uruguay, la cual será procesada exclusivamente para la finalidad
+        posibles contrataciones de personal propio. Esos datos se recogerán a través de medios legítimos y sólo serán los imprescindibles para poder realizar futuras contrataciones.
+        Los datos personales serán tratados con el grado de protección adecuado, tomándose las
+        medidas de seguridad necesarias para evitar su alteración, pérdida, tratamiento
+        o acceso no autorizado por parte de terceros.
+        </ion-item>
     </ion-item>
   </div>
     <ion-button type="submit" expand="block">Continuar</ion-button>
