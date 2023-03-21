@@ -26,13 +26,13 @@ export class HomePage implements OnInit {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      acceptsConditions : [false, [Validators.requiredTrue]]
+      acceptsConditions : [true, [Validators.requiredTrue]]
     })
   }
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Terminos y condiciones',
+      header: 'Términos y condiciones',
       message: "" +
       "        De conformidad con la Ley N° 18.331, de Protección de Datos Personales y" +
       "      Acción de Habeas Data, de 11 de agosto de 2008 (LPDP), los datos" +

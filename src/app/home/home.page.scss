@@ -66,3 +66,11 @@ ion-content{
 .ion-button-custom{
   --background: transparent;
 }
+
+ion-checkbox {
+  --size: 28px;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+}
