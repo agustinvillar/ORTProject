@@ -34,17 +34,8 @@
   </div>
     <ion-item lines="full" class="fix-bottom">
       <ion-checkbox slot="start" formControlName="acceptsConditions" required></ion-checkbox>
-        <ion-item class="item-text-wrap">
-        Acepto : 
-        De conformidad con la Ley N° 18.331, de Protección de Datos Personales y
-      Acción de Habeas Data, de 11 de agosto de 2008 (LPDP), los datos
-      suministrados los días 24 y 25 de Marzo quedaran incorporados en la Base de
-      Datos UKG Uruguay, la cual será procesada exclusivamente para la finalidad
-      posibles contrataciones de personal propio. Esos datos se recogerán a través de medios legítimos y sólo serán los imprescindibles para poder realizar futuras contrataciones.
-      Los datos personales serán tratados con el grado de protección adecuado, tomándose las
-      medidas de seguridad necesarias para evitar su alteración, pérdida, tratamiento
-      o acceso no autorizado por parte de terceros.
-        </ion-item>
+      <ion-label>Acepto </ion-label>
+      <ion-button fill="clear" (click)="presentAlert()" class="ion-button-custom">Terminos y condiciones</ion-button>
     </ion-item>
     <ion-button type="submit" expand="block">Continuar</ion-button>
   </form>

@@ -59,5 +59,10 @@ ion-content{
 
 .fix-bottom{
   position:fixed;
-  bottom: 75px;
+  bottom: 100px;
+  border-bottom: 0px;
+}
+
+.ion-button-custom{
+  --background: transparent;
 }
