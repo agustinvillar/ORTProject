@@ -16,12 +16,8 @@
   <form [formGroup]="playerForm" (ngSubmit)="formSubmit()">
     <div>
     <ion-item lines="full">
-      <ion-label position="floating">Nombre:</ion-label>
-      <ion-input formControlName="name" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Apellido:</ion-label>
-      <ion-input formControlName="lastName" type="text" required></ion-input>
+      <ion-label position="floating">Nombre completo:</ion-label>
+      <ion-input formControlName="completeName" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Correo:</ion-label>

@@ -1,6 +1,5 @@
 export class NewPlayer {
-    name: string;
-    lastName: string;
+    completeName: string;
     email: string
     mobile: string;
     acceptsConditions : boolean;

@@ -22,8 +22,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.playerForm = this.fb.group({
-      name: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions : [true, [Validators.requiredTrue]]
@@ -33,6 +32,7 @@ export class HomePage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Términos y condiciones',
+      cssClass: 'custom-alert',
       message: "" +
       "        De conformidad con la Ley N° 18.331, de Protección de Datos Personales y" +
       "      Acción de Habeas Data, de 11 de agosto de 2008 (LPDP), los datos" +
