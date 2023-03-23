@@ -14,15 +14,12 @@ export class NewPlayerService {
   createNewPlayer(player: NewPlayer) {
     const playerRef = collection(this.firestore, 'players')
     const newPlayer = {
-      name: player.name,
+      completeName: player.completeName,
       email: player.email,
       mobile: player.mobile,
-      lastName: player.lastName,
-      carreer: player.carreer,
-      semester: player.semester,
-      isWorking: player.isWorking
+      acceptsConditions: player.acceptsConditions
     }
-    this.playerName = player.name
+    this.playerName = player.completeName
     // Add to Firestore
     return addDoc(playerRef, newPlayer)
   }

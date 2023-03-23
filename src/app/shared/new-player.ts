@@ -1,9 +1,6 @@
 export class NewPlayer {
-    name: string;
-    lastName: string;
+    completeName: string;
     email: string
     mobile: string;
-    carreer: string;
-    semester: number;
-    isWorking: boolean;
+    acceptsConditions : boolean;
 }

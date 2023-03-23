@@ -52,3 +52,25 @@ ion-content{
     height: 95%;
   }
 }
+
+.item-text-wrap{
+  font-size: xx-small;
+}
+
+.fix-bottom{
+  position:fixed;
+  bottom: 7rem;
+  border-bottom: 0px;
+}
+
+.ion-button-custom{
+  --background: transparent;
+}
+
+ion-checkbox {
+  --size: 28px;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+}
