@@ -53,6 +53,7 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.showSplash = true;
+      localStorage.setItem("name", this.playerForm.value.completeName);
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
         this.router.navigate(['/new-game']);
       })
