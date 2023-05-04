@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Answer } from '../shared/asnwer';
 import { Question } from '../shared/question';
 import { QuestionsService } from '../shared/question-service';
@@ -32,6 +32,13 @@ export class NewGamePage implements OnInit {
   timeout = 3000
 
   ngOnInit() {
+    var lsCounter = parseInt(localStorage.getItem("counter"))
+    if (lsCounter >= this.maxQuestion) {
+      this.stageName = "Continuar"
+      setTimeout(() => {
+        this.router.navigate(['/game-questions']);
+      }, this.timeout-500);
+    }
     this.questionService.getQuestions().then((question) => {
       this.questionList = question
 
@@ -39,13 +46,22 @@ export class NewGamePage implements OnInit {
 
       this.questionService.changeEmitted$.subscribe(data => {
         this.correctAnswer = data
+        if (lsCounter >= this.maxQuestion) {
+          this.stageName = "Continuar"
+          setTimeout(() => {
+            this.router.navigate(['/game-questions']);
+          }, this.timeout-500);
+        }
       })
 
       this.questionService.buttonValue$.subscribe(value => {
         this.disableButton = value
       })
       this.questionService.emitToggleButton(true)
-
+    
+      if(lsCounter != 0 && lsCounter != null && !Number.isNaN(lsCounter)){
+        this.counter = lsCounter
+      }
     })
   }
 
@@ -64,6 +80,7 @@ export class NewGamePage implements OnInit {
       while (this.randomNumbers.includes(index)) {
         index = this.selectRandomIndex()
       }
+      localStorage.setItem("lastIndex", index.toString())
       this.question = this.questionList[index].question
       this.note = this.questionList[index].note
       this.answers = this.questionList[index].answers
@@ -76,12 +93,20 @@ export class NewGamePage implements OnInit {
 
   setQuestionAndAnswersWithoutTimeout() {
     let index = this.selectRandomIndex()
-    while (this.randomNumbers.includes(index)) {
-      index = this.selectRandomIndex()
+    let localIndex = parseInt(localStorage.getItem("lastIndex"))
+    if(localIndex != 0 && localIndex != null && !Number.isNaN(localIndex)){
+        index = localIndex
+    }
+    else
+    {
+      while (this.randomNumbers.includes(index)) {
+        index = this.selectRandomIndex()
+      }
     }
     this.question = this.questionList[index].question
     this.note = this.questionList[index].note
     this.answers = this.questionList[index].answers
+    localStorage.setItem("lastIndex", index.toString());
     this.child.resetColors();
     this.randomNumbers.push(index)
   }
@@ -90,10 +115,7 @@ export class NewGamePage implements OnInit {
     this.questionService.emitToggleButton(true)
     this.child.changeColors();
     this.child.showNoteMethod();
-  
-    
     if (this.stageName === "Continuar") {
-
       if (this.correctAnswer) {
         this.disableButton = true
         this.questionService.addCounter();
@@ -103,7 +125,9 @@ export class NewGamePage implements OnInit {
       }
       this.setQuestionAndAnswers();
       this.counter ++;
-      if (this.counter == this.maxQuestion) {
+      localStorage.setItem("counter", this.counter.toString());
+      localStorage.removeItem("lastIndex")
+      if (this.counter >= this.maxQuestion) {
         this.stageName = "Continuar"
         setTimeout(() => {
           this.router.navigate(['/game-questions']);
