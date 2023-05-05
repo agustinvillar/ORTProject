@@ -32,7 +32,7 @@ export class NewGamePage implements OnInit {
   timeout = 3000
 
   ngOnInit() {
-    var lsCounter = parseInt(localStorage.getItem("counter"))
+    var lsCounter = parseInt(sessionStorage.getItem("counter"))
     if (lsCounter >= this.maxQuestion) {
       this.stageName = "Continuar"
       setTimeout(() => {
@@ -80,7 +80,7 @@ export class NewGamePage implements OnInit {
       while (this.randomNumbers.includes(index)) {
         index = this.selectRandomIndex()
       }
-      localStorage.setItem("lastIndex", index.toString())
+      sessionStorage.setItem("lastIndex", index.toString())
       this.question = this.questionList[index].question
       this.note = this.questionList[index].note
       this.answers = this.questionList[index].answers
@@ -93,7 +93,7 @@ export class NewGamePage implements OnInit {
 
   setQuestionAndAnswersWithoutTimeout() {
     let index = this.selectRandomIndex()
-    let localIndex = parseInt(localStorage.getItem("lastIndex"))
+    let localIndex = parseInt(sessionStorage.getItem("lastIndex"))
     if(localIndex != 0 && localIndex != null && !Number.isNaN(localIndex)){
         index = localIndex
     }
@@ -106,7 +106,7 @@ export class NewGamePage implements OnInit {
     this.question = this.questionList[index].question
     this.note = this.questionList[index].note
     this.answers = this.questionList[index].answers
-    localStorage.setItem("lastIndex", index.toString());
+    sessionStorage.setItem("lastIndex", index.toString());
     this.child.resetColors();
     this.randomNumbers.push(index)
   }
@@ -116,7 +116,7 @@ export class NewGamePage implements OnInit {
     this.child.changeColors();
     this.child.showNoteMethod();
     if (this.stageName === "Continuar") {
-      if (this.correctAnswer) {
+      if (this.correctAnswer && this.counter < this.maxQuestion) {
         this.disableButton = true
         this.questionService.addCounter();
         this.questionService.emitChange(false)
@@ -125,8 +125,8 @@ export class NewGamePage implements OnInit {
       }
       this.setQuestionAndAnswers();
       this.counter ++;
-      localStorage.setItem("counter", this.counter.toString());
-      localStorage.removeItem("lastIndex")
+      sessionStorage.setItem("counter", this.counter.toString());
+      sessionStorage.removeItem("lastIndex")
       if (this.counter >= this.maxQuestion) {
         this.stageName = "Continuar"
         setTimeout(() => {

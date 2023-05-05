@@ -19,12 +19,15 @@ export class GameComponentComponent implements OnInit {
   constructor(private questionService: QuestionsService,private playerService: NewPlayerService) { }
 
   ngOnInit() {
-      var localName = localStorage.getItem("name");
+      var localName = sessionStorage.getItem("name");
       this.playerName = this.playerService.playerName 
       if(this.playerName == undefined){
         this.playerName = localName
       }
       this.correctAnswers = this.questionService.counter;
+      if(this.correctAnswers == 0){
+        this.correctAnswers = parseInt(sessionStorage.getItem("correctAnswers"))
+      }
       this.resultTxt = '¡Felicidades ' +this.playerName +'!'
       this.correctAnswersTxt = 'Respuestas correctas : '+this.correctAnswers;
   }
