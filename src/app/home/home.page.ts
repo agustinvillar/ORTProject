@@ -21,6 +21,8 @@ export class HomePage implements OnInit {
   showSplash = false;
 
   ngOnInit() {
+    sessionStorage.clear()
+    sessionStorage.setItem("correctAnswers", "0")
     this.playerForm = this.fb.group({
       completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -53,7 +55,7 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.showSplash = true;
-      localStorage.setItem("name", this.playerForm.value.completeName);
+      sessionStorage.setItem("name", this.playerForm.value.completeName);
       this.playerService.createNewPlayer(this.playerForm.value).then(res => {
         this.router.navigate(['/new-game']);
       })
