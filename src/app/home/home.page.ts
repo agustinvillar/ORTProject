@@ -25,6 +25,7 @@ export class HomePage implements OnInit {
       completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      cedula: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions : [true, [Validators.requiredTrue]]
     })
   }
@@ -48,8 +49,34 @@ export class HomePage implements OnInit {
     await alert.present();
   }
   
+  validation_digit(ci){
+    var a = 0;
+    var i = 0;
+    if(ci.length <= 6){
+      for(i = ci.length; i < 7; i++){
+        ci = '0' + ci;
+      }
+    }
+    for(i = 0; i < 7; i++){
+      a += (parseInt("2987634"[i]) * parseInt(ci[i])) % 10;
+    }
+    if(a%10 === 0){
+      return 0;
+    }else{
+      return 10 - a % 10;
+    }
+  }
+
+  validate_ci(ci): Boolean{
+    var dig = ci[ci.length - 1];
+    return (dig == this.validation_digit(ci));
+  }
+
   formSubmit() {
-    if (!this.playerForm.valid) {
+    var identityCard = document.getElementById('cedula') as HTMLFormElement
+    console.log(identityCard.value)
+    console.log(this.validate_ci(identityCard.value))
+    if (!this.playerForm.valid || !this.validate_ci(identityCard.value)) {
       return false;
     } else {
       this.showSplash = true;
@@ -59,5 +86,4 @@ export class HomePage implements OnInit {
         .catch(error => console.log(error));
     }
   }
-
 }
