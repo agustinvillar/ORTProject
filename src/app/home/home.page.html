@@ -34,6 +34,10 @@
         <ion-input formControlName="edad" type="number" required></ion-input>
       </ion-item>
       <ion-item lines="full">
+        <ion-label position="floating">Cedula:</ion-label>
+        <ion-input formControlName="identityCard" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
         <ion-select position="floating" formControlName="formacion" placeholder="Seleccione su formación">
           <ion-select-option value="bachillerato">Bachillerato</ion-select-option>
           <ion-select-option value="universitario">Universitario</ion-select-option>
@@ -67,7 +71,7 @@
         >Términos y condiciones</ion-button
       >
     </ion-item>
-    <ion-button type="submit" expand="block">Continuar</ion-button>
+    <ion-button type="submit" expand="block" id="formButton">Continuar</ion-button>
   </form>
 </ion-content>
 <div
