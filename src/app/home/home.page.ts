@@ -50,8 +50,17 @@ export class HomePage implements OnInit {
     await alert.present();
   }
   
-  formSubmit() {
+  async formSubmit() {
     if (!this.playerForm.valid) {
+      if(!this.playerForm.controls['acceptsConditions'].value){
+        const alert = await this.alertController.create({
+          header: 'Atención',
+          cssClass: 'custom-alert',
+          message: "Debe aceptar los términos y condiciones para continuar",
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
       return false;
     } else {
       this.showSplash = true;
