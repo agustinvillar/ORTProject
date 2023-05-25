@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
     sessionStorage.setItem("correctAnswers", "0")
     this.playerForm = this.fb.group({
       completeName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z ]{2,4}$")]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions : [true, [Validators.requiredTrue]]
     })
