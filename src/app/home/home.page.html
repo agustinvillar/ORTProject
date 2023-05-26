@@ -29,7 +29,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Cedula:</ion-label>
-      <ion-input formControlName="cedula" type="text" id="cedula" required></ion-input>
+      <ion-input formControlName="identityCard" type="text" required></ion-input>
     </ion-item>
   </div>
     <ion-item lines="none" class="fix-bottom">
@@ -37,7 +37,7 @@
       <ion-label style="font-size: 12px;">Acepto </ion-label>
       <ion-button fill="clear" (click)="presentAlert()" class="ion-button-custom">Términos y condiciones</ion-button>
     </ion-item>
-    <ion-button type="submit" expand="block">Continuar</ion-button>
+    <ion-button type="submit" expand="block"appIonCLick id="formButton" [disabled]="">Continuar</ion-button>
   </form>
 </ion-content>
 <div

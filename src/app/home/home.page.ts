@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
       completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      cedula: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions: [true, [Validators.requiredTrue]]
     })
   }
@@ -43,6 +43,26 @@ export class HomePage implements OnInit {
         "      Los datos personales serán tratados con el grado de protección adecuado, tomándose las" +
         "      medidas de seguridad necesarias para evitar su alteración, pérdida, tratamiento" +
         "      o acceso no autorizado por parte de terceros.",
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
+  async presentNotValidIdentityNumberAlert(){
+    const alert = await this.alertController.create({
+      header: 'Cedula no valida',
+      cssClass: 'custom-alert',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
+  async presentDuplicatePlayerAlert(){
+    const alert = await this.alertController.create({
+      header: 'Usuario ya registrado',
+      cssClass: 'custom-alert',
       buttons: ['OK'],
     });
 
@@ -69,15 +89,22 @@ export class HomePage implements OnInit {
 
   validate_ci(ci): Boolean {
     var dig = ci[ci.length - 1];
-    return (dig == this.validation_digit(ci));
+    var isValid = dig == this.validation_digit(ci);
+    if(!isValid) this.presentNotValidIdentityNumberAlert()
+    return isValid
   }
 
+  submitPoll(button){
+    button.disabled = true;
+    setTimeout(function(){button.disabled = false;},2000);
+}
+
   formSubmit() {
-    var identityCard = document.getElementById('cedula') as HTMLFormElement
-    this.playerForm.value.identityCard = identityCard.value
-    this.playerService.getAmountOfPlayersByIdentityCard(identityCard.value).then(res => {
+    this.submitPoll(document.getElementById("formButton"))
+    this.playerService.getAmountOfPlayersByIdentityCard(this.playerForm.value.identityCard).then(res => {
       console.log(res.data().count)
-      if (!this.playerForm.valid || !this.validate_ci(identityCard.value) || res.data().count >= 1) {
+      if (!this.playerForm.valid || !this.validate_ci(this.playerForm.value.identityCard) || res.data().count >= 1) {
+        if (res.data().count >= 1) this.presentDuplicatePlayerAlert()
         return false;
       } else {
         this.showSplash = true;
