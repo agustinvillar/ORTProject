@@ -53,7 +53,7 @@
         </ion-select>
       </ion-item>
     </div>
-    <ion-item lines="none" class="fix-bottom">
+    <ion-item lines="none" expand="block" class="fix-bottom">
       <ion-checkbox
         slot="start"
         formControlName="acceptsConditions"
@@ -69,6 +69,7 @@
     </ion-item>
     <ion-button type="submit" expand="block">Continuar</ion-button>
   </form>
+  <ion-button (click)="formSubmitWOPlay()" fill="outline" expand="block">Continuar sin Jugar</ion-button>
 </ion-content>
 <div
   class="app-splash-screen"

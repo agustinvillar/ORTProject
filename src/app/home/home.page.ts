@@ -75,4 +75,26 @@ export class HomePage implements OnInit {
     }
   }
 
+  async formSubmitWOPlay() {
+    if (!this.playerForm.valid) {
+      if(!this.playerForm.controls['acceptsConditions'].value){
+        const alert = await this.alertController.create({
+          header: 'Atención',
+          cssClass: 'custom-alert',
+          message: "Debe aceptar los términos y condiciones para continuar",
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
+      return false;
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Éxito',
+        message: "Usuario registrado con éxito",
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+  }
+
 }
