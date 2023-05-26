@@ -31,7 +31,6 @@ export class HomePage implements OnInit {
       identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       formacion: ['', [Validators.required]],
       especializacion: [''],
-      identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions: [true, [Validators.requiredTrue]]
     })
   }
