@@ -39,6 +39,10 @@ ion-button{
   --background: #0176B2;
 }
 
+ion-button:nth-child(2){
+  --background: none;
+}
+
 ion-footer{
   margin-bottom: 3rem;
 }

@@ -14,7 +14,7 @@
     <ion-title style="text-align: center">Registro de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content scroll-y="false">
   <form [formGroup]="playerForm" (ngSubmit)="formSubmit()">
     <div>
       <ion-item lines="full">
@@ -69,7 +69,7 @@
     </ion-item>
     <ion-button type="submit" expand="block">Continuar</ion-button>
   </form>
-  <ion-button (click)="formSubmitWOPlay()" fill="outline" expand="block">Continuar sin Jugar</ion-button>
+  <ion-button (click)="formSubmitWOPlay()" fill="clear" expand="block">Continuar sin Jugar</ion-button>
 </ion-content>
 <div
   class="app-splash-screen"
