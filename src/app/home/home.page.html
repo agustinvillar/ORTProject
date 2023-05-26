@@ -14,7 +14,7 @@
     <ion-title style="text-align: center">Registro de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content scroll-y="false">
+<ion-content >
   <form [formGroup]="playerForm" (ngSubmit)="formSubmit()">
     <div>
       <ion-item lines="full">
@@ -67,9 +67,11 @@
         >Términos y condiciones</ion-button
       >
     </ion-item>
-    <ion-button type="submit" expand="block">Continuar</ion-button>
+    <div>
+      <ion-button type="submit" expand="block">Continuar</ion-button>
+      <ion-button (click)="formSubmitWOPlay()" fill="clear" expand="block">Continuar sin Jugar</ion-button>
+    </div>
   </form>
-  <ion-button (click)="formSubmitWOPlay()" fill="clear" expand="block">Continuar sin Jugar</ion-button>
 </ion-content>
 <div
   class="app-splash-screen"
