@@ -27,14 +27,11 @@ export class HomePage implements OnInit {
       completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z ]{2,4}$")]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-<<<<<<< HEAD
       edad: ['', [Validators.required, Validators.max(100), Validators.min(0)]],
       identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       formacion: ['', [Validators.required]],
       especializacion: [''],
-=======
-      cedula: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
->>>>>>> 681f952 (implemented identityCard validation)
+      identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       acceptsConditions: [true, [Validators.requiredTrue]]
     })
   }
@@ -58,7 +55,6 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-<<<<<<< HEAD
   async presentNotValidIdentityNumberAlert() {
     const alert = await this.alertController.create({
       header: 'Cedula no valida',
@@ -79,8 +75,6 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-=======
->>>>>>> 681f952 (implemented identityCard validation)
   validation_digit(ci) {
     var a = 0;
     var i = 0;

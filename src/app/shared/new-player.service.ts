@@ -1,13 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { NewPlayer } from '../shared/new-player';
-<<<<<<< HEAD
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { getCountFromServer, query, where } from 'firebase/firestore';
-=======
-import { Firestore, collection, addDoc, docSnapshots } from '@angular/fire/firestore';
-import { doc, getCountFromServer, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore';
->>>>>>> 681f952 (implemented identityCard validation)
 @Injectable({
   providedIn: 'root',
 })
