@@ -28,7 +28,9 @@ import { Subject } from 'rxjs';
     }
 
     addCounter(){
-      this.counter++
+      var correctAnswers = parseInt(sessionStorage.getItem("correctAnswers"))
+      this.counter = correctAnswers + 1
+      sessionStorage.setItem("correctAnswers",this.counter.toString())
     }
 
     resetCounter(){

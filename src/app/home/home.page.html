@@ -1,41 +1,75 @@
-<app-splash-screen [animationType]="'slide-left'"
-[duration]="2"
-[animationDuration]="0.5"></app-splash-screen>
+<app-splash-screen
+  [animationType]="'slide-left'"
+  [duration]="2"
+  [animationDuration]="0.5"
+></app-splash-screen>
 <ion-header>
   <header>
-    <img src="../../assets/icons/UKG-logo-white.png">
+    <img src="../../assets/icons/UKG-logo-white.png" />
   </header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title style="text-align: center;">Registro de usuario</ion-title>
+    <ion-title style="text-align: center">Registro de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <form [formGroup]="playerForm" (ngSubmit)="formSubmit()">
     <div>
-    <ion-item lines="full">
-      <ion-label position="floating">Nombre completo:</ion-label>
-      <ion-input formControlName="completeName" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Correo:</ion-label>
-      <ion-input formControlName="email" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Teléfono:</ion-label>
-      <ion-input formControlName="mobile" type="text" required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Cedula:</ion-label>
-      <ion-input formControlName="identityCard" type="text" required></ion-input>
-    </ion-item>
-  </div>
+      <ion-item lines="full">
+        <ion-label position="floating">Nombre completo:</ion-label>
+        <ion-input formControlName="completeName" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Correo:</ion-label>
+        <ion-input formControlName="email" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Teléfono:</ion-label>
+        <ion-input formControlName="mobile" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Edad:</ion-label>
+        <ion-input formControlName="edad" type="number" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Cedula:</ion-label>
+        <ion-input formControlName="identityCard" type="text" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-select position="floating" formControlName="formacion" placeholder="Seleccione su formación">
+          <ion-select-option value="bachillerato">Bachillerato</ion-select-option>
+          <ion-select-option value="universitario">Universitario</ion-select-option>
+          <ion-select-option value="maestria">Maestria</ion-select-option>
+          <ion-select-option value="doctorado">Doctorado</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-select position="floating" formControlName="especializacion" placeholder="Seleccione su especialización">
+          <ion-select-option value="seguridad">Seguridad</ion-select-option>
+          <ion-select-option value="management">Management</ion-select-option>
+          <ion-select-option value="desarrollo">Desarrollo</ion-select-option>
+          <ion-select-option value="emprendedurismo">Emprendedurismo</ion-select-option>
+          <ion-select-option value="infraestructura">Infraestructura</ion-select-option>
+          <ion-select-option value="qa">QA</ion-select-option>
+          <ion-select-option value="análisis">Análisis</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
     <ion-item lines="none" class="fix-bottom">
-      <ion-checkbox slot="start" formControlName="acceptsConditions" required></ion-checkbox>
-      <ion-label style="font-size: 12px;">Acepto </ion-label>
-      <ion-button fill="clear" (click)="presentAlert()" class="ion-button-custom">Términos y condiciones</ion-button>
+      <ion-checkbox
+        slot="start"
+        formControlName="acceptsConditions"
+        required
+      ></ion-checkbox>
+      <ion-label style="font-size: 12px">Acepto </ion-label>
+      <ion-button
+        fill="clear"
+        (click)="presentAlert()"
+        class="ion-button-custom"
+        >Términos y condiciones</ion-button
+      >
     </ion-item>
     <ion-button type="submit" expand="block"appIonCLick id="formButton" [disabled]="">Continuar</ion-button>
   </form>

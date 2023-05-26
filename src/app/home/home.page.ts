@@ -21,12 +21,17 @@ export class HomePage implements OnInit {
   showSplash = false;
 
   ngOnInit() {
+    sessionStorage.clear()
+    sessionStorage.setItem("correctAnswers", "0")
     this.playerForm = this.fb.group({
       completeName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z ]{2,4}$")]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       identityCard: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      acceptsConditions: [true, [Validators.requiredTrue]]
+      edad: ['', [Validators.required, Validators.max(100), Validators.min(0)]],
+      formacion: ['', [Validators.required]],
+      especializacion: [''],
+      acceptsConditions : [true, [Validators.requiredTrue]]
     })
   }
 
@@ -69,7 +74,7 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-  validation_digit(ci) {
+  validation_digit(ci){
     var a = 0;
     var i = 0;
     if (ci.length <= 6) {
@@ -84,7 +89,7 @@ export class HomePage implements OnInit {
       return 0;
     } else {
       return 10 - a % 10;
-    }
+   }
   }
 
   validate_ci(ci): Boolean {
@@ -98,21 +103,34 @@ export class HomePage implements OnInit {
     button.disabled = true;
     setTimeout(function(){button.disabled = false;},2000);
 }
-
-  formSubmit() {
+  
+  async formSubmit() {
     this.submitPoll(document.getElementById("formButton"))
-    this.playerService.getAmountOfPlayersByIdentityCard(this.playerForm.value.identityCard).then(res => {
-      console.log(res.data().count)
-      if (!this.playerForm.valid || !this.validate_ci(this.playerForm.value.identityCard) || res.data().count >= 1) {
-        if (res.data().count >= 1) this.presentDuplicatePlayerAlert()
-        return false;
-      } else {
-        this.showSplash = true;
-        this.playerService.createNewPlayer(this.playerForm.value).then(res => {
-          this.router.navigate(['/new-game']);
-        })
-          .catch(error => console.log(error));
+    if (!this.playerForm.valid) {
+      if(!this.playerForm.controls['acceptsConditions'].value){
+        const alert = await this.alertController.create({
+          header: 'Atención',
+          cssClass: 'custom-alert',
+          message: "Debe aceptar los términos y condiciones para continuar",
+          buttons: ['OK'],
+        });
+        await alert.present();
       }
-    })
+      return false;
+    } else {
+      this.playerService.getAmountOfPlayersByIdentityCard(this.playerForm.value.identityCard).then(res => {
+        if (!this.validate_ci(this.playerForm.value.identityCard) || res.data().count >= 1) {
+          if (res.data().count >= 1) this.presentDuplicatePlayerAlert()
+          return false;
+        } else {
+          this.showSplash = true;
+          sessionStorage.setItem("name", this.playerForm.value.completeName);
+          this.playerService.createNewPlayer(this.playerForm.value).then(res => {
+            this.router.navigate(['/new-game']);
+          })
+            .catch(error => console.log(error));
+        }
+      })
+    }
   }
 }
