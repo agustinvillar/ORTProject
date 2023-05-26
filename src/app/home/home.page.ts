@@ -29,7 +29,7 @@ export class HomePage implements OnInit {
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       edad: ['', [Validators.required, Validators.max(100), Validators.min(0)]],
       formacion: ['', [Validators.required]],
-      sector: [''],
+      especializacion: [''],
       acceptsConditions : [true, [Validators.requiredTrue]]
     })
   }

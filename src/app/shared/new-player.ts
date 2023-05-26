@@ -4,6 +4,6 @@ export class NewPlayer {
     mobile: string;
     edad: Int32Array;
     formacion: string;
-    sector: string;
+    especializacion: string;
     acceptsConditions : boolean;
 }

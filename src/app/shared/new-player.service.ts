@@ -19,7 +19,7 @@ export class NewPlayerService {
       mobile: player.mobile,
       edad: player.edad,
       formacion: player.formacion,
-      sector: player.sector,
+      especializacion: player.especializacion,
       acceptsConditions: player.acceptsConditions
     }
     this.playerName = player.completeName
