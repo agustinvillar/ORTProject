@@ -19,6 +19,7 @@ export class NewPlayerService {
       email: player.email,
       mobile: player.mobile,
       edad: player.edad,
+      identityCard: player.identityCard,
       formacion: player.formacion,
       especializacion: player.especializacion,
       acceptsConditions: player.acceptsConditions
