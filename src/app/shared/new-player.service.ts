@@ -17,6 +17,9 @@ export class NewPlayerService {
       completeName: player.completeName,
       email: player.email,
       mobile: player.mobile,
+      edad: player.edad,
+      formacion: player.formacion,
+      sector: player.sector,
       acceptsConditions: player.acceptsConditions
     }
     this.playerName = player.completeName

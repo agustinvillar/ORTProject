@@ -27,6 +27,9 @@ export class HomePage implements OnInit {
       completeName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z ]{2,4}$")]],
       mobile: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      edad: ['', [Validators.required, Validators.max(100), Validators.min(0)]],
+      formacion: ['', [Validators.required]],
+      sector: [''],
       acceptsConditions : [true, [Validators.requiredTrue]]
     })
   }
