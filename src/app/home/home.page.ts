@@ -74,6 +74,8 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
+
+
   validation_digit(ci) {
     var a = 0;
     var i = 0;
@@ -120,8 +122,11 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.playerService.getAmountOfPlayersByIdentityCard(this.playerForm.value.identityCard).then(res => {
-        if (!this.validate_ci(this.playerForm.value.identityCard) || res.data().count >= 1) {
-          if (res.data().count >= 1) this.presentDuplicatePlayerAlert()
+        if (!this.validate_ci(this.playerForm.value.identityCard) || res.data().count >= 1 || this.playerForm.value.identityCard.length > 8) {
+          if (res.data().count >= 1) 
+            this.presentDuplicatePlayerAlert()
+
+          this.presentNotValidIdentityNumberAlert()
           return false;
         } else {
           this.showSplash = true;
