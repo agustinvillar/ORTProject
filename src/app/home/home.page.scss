@@ -9,13 +9,13 @@
 }
 
 #container strong {
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 12px;
+  line-height: 16px;
 
   color: #8c8c8c;
 
@@ -44,13 +44,13 @@ ion-button:nth-child(2){
 }
 
 ion-footer{
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 ion-content{
   form{
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     flex-direction: column;
     justify-content: space-between;
     height: 95%;
@@ -72,7 +72,7 @@ ion-content{
 }
 
 ion-checkbox {
-  --size: 28px;
+  --size: 24px;
 }
 
 ion-checkbox::part(container) {

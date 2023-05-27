@@ -56,23 +56,24 @@
           <ion-select-option value="análisis">Análisis</ion-select-option>
         </ion-select>
       </ion-item>
+      <ion-item lines="none" expand="block" >
+        <ion-checkbox
+          slot="start"
+          formControlName="acceptsConditions"
+          required
+        ></ion-checkbox>
+        <ion-label style="font-size: 12px">Acepto </ion-label>
+        <ion-button
+          fill="clear"
+          (click)="presentAlert()"
+          class="ion-button-custom"
+          >Términos y condiciones</ion-button>
+      </ion-item>
+        
     </div>
-    <ion-item lines="none" expand="block" class="fix-bottom">
-      <ion-checkbox
-        slot="start"
-        formControlName="acceptsConditions"
-        required
-      ></ion-checkbox>
-      <ion-label style="font-size: 12px">Acepto </ion-label>
-      <ion-button
-        fill="clear"
-        (click)="presentAlert()"
-        class="ion-button-custom"
-        >Términos y condiciones</ion-button
-      >
-    </ion-item>
+    
     <div>
-      <ion-button type="submit" expand="block">Continuar</ion-button>
+      <ion-button type="submit" expand="block" id="formButton">Continuar</ion-button>
       <ion-button (click)="formSubmitWOPlay()" fill="clear" expand="block">Continuar sin Jugar</ion-button>
     </div>
 
